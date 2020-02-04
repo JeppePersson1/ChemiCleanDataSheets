@@ -1,0 +1,39 @@
+﻿@model IEnumerable<ChemiCleanDataSheets.Web.Models.TblProduct>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
+
+<table id="DataSheetTable" class="table">
+    <thead>
+        <tr>
+            <th>Product Name</th>
+            <th>Supplier Name</th>
+            <th>URL</th>
+        </tr>
+    <thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td> @Html.DisplayFor(modelItem => item.ProductName) </td>
+                <td> @Html.DisplayFor(modelItem => item.SupplierName) </td>
+                <td>
+                    <div class="pull-right">
+                        @Html.ActionLink("Download PDF", "GetPDF", "Home", routeValues: new { url = item.Url })
+                    </div>
+                </td>
+            </tr>
+        }
+    <tbody>
+</table>
+
+
+<script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+<script>
+    $(document).ready(function () {
+        $.noConflict();
+        var table = $('#DataSheetTable').DataTable();
+    });</script>
