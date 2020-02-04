@@ -68,7 +68,7 @@ namespace ChemiCleanDataSheets.Web.Controllers
             {
                 if (dataSheet == null)
                 {
-                    RedirectToAction("Error");
+                    throw new Exception("Unable to find pdf");
                 }
                 return File(dataSheet.StoredFile, "application/pdf");
             }
